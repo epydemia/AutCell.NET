@@ -1,1 +1,0 @@
-c:\users\daniele\documents\visual studio 2012\Projects\AutCell\AutCell\bin\Debug\AutCell.exe.config
