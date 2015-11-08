@@ -1,0 +1,14 @@
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_GUI.exe.config
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_GUI.exe
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_GUI.pdb
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_GUI.xml
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_Lib.dll
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_Lib.pdb
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_Lib.xml
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.vbprojResolveAssemblyReference.cache
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.Form1.resources
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.Resources.resources
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.vbproj.GenerateResource.Cache
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.exe
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.xml
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.pdb

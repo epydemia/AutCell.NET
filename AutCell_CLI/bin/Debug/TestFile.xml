@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ParametriRete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ParametriRete>
+    <ncl>6</ncl>
+    <nci>123</nci>
+    <lv>2</lv>
+    <ar>2.50000143</ar>
+    <e>2500</e>
+    <e1>0</e1>
+    <der>0</der>
+    <seme>4</seme>
+    <ec>2</ec>
+    <inib>1</inib>
+    <vmw>1000</vmw>
+    <vw>500</vw>
+    <pr>2</pr>
+    <ru>1</ru>
+    <rd>0</rd>
+    <rt>0</rt>
+    <nr>3</nr>
+    <cla>50</cla>
+    <sga>1</sga>
+  </ParametriRete>
+</ParametriRete>

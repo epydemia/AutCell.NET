@@ -1,0 +1,8 @@
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\bin\Debug\AutCell_Lib.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\bin\Debug\AutCell_Lib.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\bin\Debug\AutCell_Lib.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\obj\Debug\AutCell_Lib.Resources.resources
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\obj\Debug\AutCell_Lib.vbproj.GenerateResource.Cache
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\obj\Debug\AutCell_Lib.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\obj\Debug\AutCell_Lib.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_Lib\obj\Debug\AutCell_Lib.pdb

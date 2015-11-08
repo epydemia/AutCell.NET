@@ -1,0 +1,13 @@
+c:\users\daniele\documents\visual studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_CLI.exe.config
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_CLI.exe
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_CLI.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_CLI.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_Lib.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_Lib.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\bin\Debug\AutCell_Lib.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.vbprojResolveAssemblyReference.cache
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.Resources.resources
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.vbproj.GenerateResource.Cache
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.exe
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_CLI\obj\Debug\AutCell_CLI.pdb
