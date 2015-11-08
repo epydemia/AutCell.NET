@@ -18,7 +18,7 @@ Module Module1
 
         Dim sw As New Stopwatch
         sw.Start()
-        For i As Integer = 0 To 1000
+        For i As Integer = 0 To 100
             net.Update()
             Console.WriteLine(net.globalActivity)
         Next

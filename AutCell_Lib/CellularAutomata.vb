@@ -414,7 +414,8 @@ Public Class CellularAutomata
 
         'sg099 = s(0, i, j, k) + sg099 * (at / 0.9) * 100 - s(0, i, j, k) / pr
         's(0, i, j, k) = sg099
-        Neu(i, j, k).activity = Neu(i, j, k).activity + sg099 * (at / 0.9) * 100 - Neu(i, j, k).activity / pr
+        Neu(i, j, k).activity = Neu(i, j, k).activity + sg099 / 100 * (at / 0.9) - Neu(i, j, k).activity / pr
+        ' sg099 * (at / 0.9) / 100 -> E' stato diviso per 100 per normalizzare all'unità
 
 
         'If ABS(nt) < 1 And ABS(s(0, i, j, k)) < 2 Then s(1, i, j, k) = s(1, i, j, k) + 1 Else s(1, i, j, k) = 0
