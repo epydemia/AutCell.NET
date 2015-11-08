@@ -405,17 +405,19 @@ Public Class CellularAutomata
             Next m
         Next l
 
-        'nt = sga * nt / 100000000.0 : sg099 = s(0, i, j, k) / 100
+        'nt = sga * nt / 100000000.0 : sg099 = s(0, i, j, k) / 100 ' Se nt e sga sono normalizzate a 1, non è chiaro perchè sg099 sia normalizzato a 100
         nt = sga * nt
         Dim sg099 = Neu(i, j, k).activity * 100
 
-        Dim at = 1 / (1 + Math.Exp(-(nt - sg099) / ar))
+        Dim at = 1 / (1 + Math.Exp(-(nt - sg099) / ar)) ' tanto più che qui sg099 viene sottratto a nt...
         Nsp(t(0), i, j, k).activity = at
+
+        ' non è chiara la relazione tra sp e s
 
         'sg099 = s(0, i, j, k) + sg099 * (at / 0.9) * 100 - s(0, i, j, k) / pr
         's(0, i, j, k) = sg099
         Neu(i, j, k).activity = Neu(i, j, k).activity + sg099 / 100 * (at / 0.9) - Neu(i, j, k).activity / pr
-        ' sg099 * (at / 0.9) / 100 -> E' stato diviso per 100 per normalizzare all'unità
+        ' sg099 * (at / 0.9) / 100 -> Nella linea di codice sopra sga e' stato diviso per 100 per normalizzare all'unità
 
 
         'If ABS(nt) < 1 And ABS(s(0, i, j, k)) < 2 Then s(1, i, j, k) = s(1, i, j, k) + 1 Else s(1, i, j, k) = 0
