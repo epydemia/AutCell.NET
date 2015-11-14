@@ -2,7 +2,7 @@
 Imports System.Threading
 
 Public Class CellularAutomata
-    Public parallelEnabled As Boolean = True
+    Public parallelEnabled As Boolean = False
     Public time As UInt32  ' Questo è il tempo numero di ciclo di simulazione
 
     Public t() As Int16
@@ -18,7 +18,7 @@ Public Class CellularAutomata
     Public d() As Single ' Fattore moltiplicativo di retrodiffusione (Inverso al quadrato della distanza)
     Public dt(,,,) As Single
     Public globalActivity As Single
-    Private thr(1) As Thread
+
 
     Public Sub New(config As Configuration)
         Me.New(config.cellforEachSide, config.levels)
@@ -388,20 +388,21 @@ Public Class CellularAutomata
         Dim pr = NetworkConfiguration.pr
         Dim a As Integer = 0
         Dim nt As Single
+        Dim l1, m1, n1 As Integer
         For l As Integer = i - lv To i + lv
-
+            l1 = limiterWrap(l)
             For m As Integer = j - lv To j + lv
-
-                For N As Integer = k - lv To k + lv
-                    If l <> i Or m <> j Or N <> k Then
-
+                m1 = limiterWrap(m)
+                For n As Integer = k - lv To k + lv
+                    If l <> i Or m <> j Or n <> k Then
+                        n1 = limiterWrap(n)
 
                         Dim li As Integer = wlw(i, j, k, a)
 
-                        nt = nt + Neu(i, j, k).sinapsi(a) * Nsp(t(li), limiterWrap(l), limiterWrap(m), limiterWrap(N)).activity
+                        nt = nt + Neu(i, j, k).sinapsi(a) * Nsp(t(li), l1, m1, n1).activity
                         a = a + 1
                     End If
-                Next N
+                Next n
             Next m
         Next l
 

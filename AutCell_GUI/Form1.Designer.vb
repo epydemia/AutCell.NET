@@ -25,6 +25,8 @@ Partial Class Form1
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.Plot1 = New OxyPlot.WindowsForms.Plot()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,16 +56,29 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 355)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(621, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(56, 17)
+        Me.ToolStripStatusLabel1.Text = "StatusBar"
+        '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(41, 17)
+        Me.ToolStripStatusLabel2.Text = "Spring"
+        '
         'ToolStripProgressBar1
         '
         Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
         '
         'MenuStrip1
@@ -106,5 +121,7 @@ Partial Class Form1
     Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents StartToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
 
 End Class
