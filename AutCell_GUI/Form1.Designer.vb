@@ -22,70 +22,89 @@ Partial Class Form1
     'Non modificarla nell'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.Start = New System.Windows.Forms.Button()
-        Me.CellularAutomataBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CellularAutomataBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Plot1 = New OxyPlot.WindowsForms.Plot()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Chart1
-        '
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
-        Me.Chart1.DataSource = Me.CellularAutomataBindingSource
-        Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(80, 12)
-        Me.Chart1.Name = "Chart1"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Legend = "Legend1"
-        Series1.Name = "Series1"
-        Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Size = New System.Drawing.Size(460, 293)
-        Me.Chart1.TabIndex = 0
-        Me.Chart1.Text = "Chart1"
         '
         'BackgroundWorker2
         '
+        Me.BackgroundWorker2.WorkerReportsProgress = True
+        Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
-        'Start
+        'Plot1
         '
-        Me.Start.Location = New System.Drawing.Point(26, 342)
-        Me.Start.Name = "Start"
-        Me.Start.Size = New System.Drawing.Size(75, 23)
-        Me.Start.TabIndex = 1
-        Me.Start.Text = "Button1"
-        Me.Start.UseVisualStyleBackColor = True
+        Me.Plot1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Plot1.KeyboardPanHorizontalStep = 0.1R
+        Me.Plot1.KeyboardPanVerticalStep = 0.1R
+        Me.Plot1.Location = New System.Drawing.Point(0, 0)
+        Me.Plot1.Name = "Plot1"
+        Me.Plot1.PanCursor = System.Windows.Forms.Cursors.Hand
+        Me.Plot1.Size = New System.Drawing.Size(621, 377)
+        Me.Plot1.TabIndex = 2
+        Me.Plot1.Text = "Plot1"
+        Me.Plot1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE
+        Me.Plot1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
+        Me.Plot1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
-        'CellularAutomataBindingSource
+        'StatusStrip1
         '
-        Me.CellularAutomataBindingSource.DataSource = GetType(AutCell_Lib.CellularAutomata)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 355)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(621, 22)
+        Me.StatusStrip1.TabIndex = 3
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(621, 24)
+        Me.MenuStrip1.TabIndex = 4
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'StartToolStripMenuItem
+        '
+        Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
+        Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.StartToolStripMenuItem.Text = "Start"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(621, 377)
-        Me.Controls.Add(Me.Start)
-        Me.Controls.Add(Me.Chart1)
+        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.Plot1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "Form1"
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CellularAutomataBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Start As System.Windows.Forms.Button
-    Friend WithEvents CellularAutomataBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Plot1 As OxyPlot.WindowsForms.Plot
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents StartToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

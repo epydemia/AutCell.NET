@@ -2,7 +2,7 @@
 Imports System.Threading
 
 Public Class CellularAutomata
-    Public parallelEnabled As Boolean = False
+    Public parallelEnabled As Boolean = True
     Public time As UInt32  ' Questo è il tempo numero di ciclo di simulazione
 
     Public t() As Int16
@@ -44,8 +44,8 @@ Public Class CellularAutomata
 
         ReDim t(NumLivelli)
 
-        thr(0) = New Thread(New ParameterizedThreadStart(AddressOf Update))
-        thr(1) = New Thread(New ParameterizedThreadStart(AddressOf Update))
+        'thr(0) = New Thread(New ParameterizedThreadStart(AddressOf Update))
+        'thr(1) = New Thread(New ParameterizedThreadStart(AddressOf Update))
 
     End Sub
 
@@ -437,16 +437,16 @@ Public Class CellularAutomata
         Dim e = NetworkConfiguration.e
         Dim lv = NetworkConfiguration.levels
         Dim a = 0
-
+        Dim l1, m1, n1 As Integer
         For l = i - lv To i + lv
-            'l1 = limiti(l)
+            l1 = limiterWrap(l)
             For m = j - lv To j + lv
-                'm1 = limiti(m)
+                m1 = limiterWrap(m)
                 For n = k - lv To k + lv
                     If l = i And m = j And n = k Then n = n + 1
-                    'n1 = limiti(n)
-                    Dim li = wl(a)
-                    Dim pn = Nsp(li, limiterWrap(l), limiterWrap(m), limiterWrap(n)).activity
+                    n1 = limiterWrap(n)
+                    'li = wl(a)
+                    Dim pn = Nsp(wl(a), l1, m1, n1).activity
                     pn = pn * Nsp(0, i, j, k).activity
                     ' dh1 = 0.000001 * (pn# * Sgn(w(i, j, k, a)) - E * w(i, j, k, a))
                     'dt1 = dt(i, j, k, a)

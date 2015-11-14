@@ -12,3 +12,9 @@ C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\D
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.exe
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.xml
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.WindowsForms.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.xml
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.WindowsForms.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.WindowsForms.xml
