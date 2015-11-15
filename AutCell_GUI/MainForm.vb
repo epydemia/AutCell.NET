@@ -1,7 +1,7 @@
 ﻿Imports AutCell_Lib
 Imports OxyPlot
 
-Public Class Form1
+Public Class MainForm
     Public net As CellularAutomata
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New Series.LineSeries()
@@ -17,20 +17,24 @@ Public Class Form1
         net = New CellularAutomata(c)
 
         BackgroundWorker2.WorkerReportsProgress = True
-        ActivityPlot.Series.Add(ActivitySeries)
-        Plot1.Model = ActivityPlot
 
+
+        ' Set up Activity Plot
+        ActivityPlot.Series.Add(ActivitySeries)
+        GlobalActivity.Model = ActivityPlot
         ActivityPlot.Axes.Add(New Axes.LinearAxis(pos:=Axes.AxisPosition.Bottom, Minimum:=0, Maximum:=1000))
 
+        ' Set Up Status Bar
         ToolStripStatusLabel2.Spring = True
         ToolStripStatusLabel2.Text = ""
-
         ToolStripProgressBar1.Minimum = 0
         ToolStripProgressBar1.Maximum = 100
         ToolStripProgressBar1.Alignment = ToolStripItemAlignment.Right
+
+
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
-       
+
         For i As Integer = 0 To 1000
             If BackgroundWorker2.CancellationPending Then
                 e.Cancel = True
@@ -41,15 +45,13 @@ Public Class Form1
                 net.UpdateParallelFor()
 
                 ActivitySeries.Points.Add(New Series.ScatterPoint(i, net.globalActivity))
-                Plot1.InvalidatePlot(True)
+                GlobalActivity.InvalidatePlot(True)
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
-            
+
         Next
         Running = False
     End Sub
-
-
 
     Private Sub BackgroundWorker2_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker2.ProgressChanged
         ToolStripProgressBar1.Value = e.ProgressPercentage
@@ -61,7 +63,7 @@ Public Class Form1
             Running = True
 
             ActivitySeries.Points.Clear()
-            Plot1.InvalidatePlot(True)
+            GlobalActivity.InvalidatePlot(True)
             BackgroundWorker2.RunWorkerAsync()
 
         Else

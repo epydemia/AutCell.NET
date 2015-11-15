@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class MainForm
     Inherits System.Windows.Forms.Form
 
     'Form esegue l'override del metodo Dispose per pulire l'elenco dei componenti.
@@ -23,15 +23,20 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.Plot1 = New OxyPlot.WindowsForms.Plot()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Splitter2 = New System.Windows.Forms.Splitter()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.GlobalActivity = New OxyPlot.WindowsForms.Plot()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BackgroundWorker2
@@ -39,27 +44,12 @@ Partial Class Form1
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
-        'Plot1
-        '
-        Me.Plot1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Plot1.KeyboardPanHorizontalStep = 0.1R
-        Me.Plot1.KeyboardPanVerticalStep = 0.1R
-        Me.Plot1.Location = New System.Drawing.Point(0, 0)
-        Me.Plot1.Name = "Plot1"
-        Me.Plot1.PanCursor = System.Windows.Forms.Cursors.Hand
-        Me.Plot1.Size = New System.Drawing.Size(621, 377)
-        Me.Plot1.TabIndex = 2
-        Me.Plot1.Text = "Plot1"
-        Me.Plot1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE
-        Me.Plot1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
-        Me.Plot1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 355)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 490)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(621, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(905, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -86,7 +76,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(621, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(905, 24)
         Me.MenuStrip1.TabIndex = 4
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -96,32 +86,75 @@ Partial Class Form1
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
         '
-        'Form1
+        'Splitter2
+        '
+        Me.Splitter2.Location = New System.Drawing.Point(0, 24)
+        Me.Splitter2.Name = "Splitter2"
+        Me.Splitter2.Size = New System.Drawing.Size(3, 466)
+        Me.Splitter2.TabIndex = 7
+        Me.Splitter2.TabStop = False
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 24)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.GlobalActivity)
+        Me.SplitContainer1.Size = New System.Drawing.Size(902, 466)
+        Me.SplitContainer1.SplitterDistance = 233
+        Me.SplitContainer1.TabIndex = 11
+        '
+        'GlobalActivity
+        '
+        Me.GlobalActivity.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GlobalActivity.KeyboardPanHorizontalStep = 0.1R
+        Me.GlobalActivity.KeyboardPanVerticalStep = 0.1R
+        Me.GlobalActivity.Location = New System.Drawing.Point(0, 0)
+        Me.GlobalActivity.Name = "GlobalActivity"
+        Me.GlobalActivity.PanCursor = System.Windows.Forms.Cursors.Hand
+        Me.GlobalActivity.Size = New System.Drawing.Size(902, 229)
+        Me.GlobalActivity.TabIndex = 11
+        Me.GlobalActivity.Text = "Plot1"
+        Me.GlobalActivity.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE
+        Me.GlobalActivity.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
+        Me.GlobalActivity.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
+        '
+        'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(621, 377)
+        Me.ClientSize = New System.Drawing.Size(905, 512)
+        Me.Controls.Add(Me.SplitContainer1)
+        Me.Controls.Add(Me.Splitter2)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Plot1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "Form1"
+        Me.Name = "MainForm"
         Me.Text = "Form1"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Plot1 As OxyPlot.WindowsForms.Plot
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents StartToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Splitter2 As System.Windows.Forms.Splitter
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents GlobalActivity As OxyPlot.WindowsForms.Plot
 
 End Class
