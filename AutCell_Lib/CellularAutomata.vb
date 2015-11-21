@@ -22,6 +22,7 @@ Public Class CellularAutomata
     Public dt(,,,) As Single
     Public globalActivity As Single
     Public SynapticWeightDistribution As Integer(,)
+    Public ActivityDistribution As Integer()
 
     Public Sub New(config As Configuration)
         Me.New(config.cellforEachSide, config.levels)
@@ -112,6 +113,23 @@ Public Class CellularAutomata
             Next
         Next
 
+    End Sub
+
+    Public Sub UpdateActivityDistribution()
+        Dim MinValue = 0
+        Dim MaxValue = 1
+        Dim ScaleFactor As Integer = NumeroIntervalliDistribuzione / (MaxValue - MinValue)
+
+        ReDim ActivityDistribution(NumeroIntervalliDistribuzione)
+        For i As Integer = 0 To NumCellLato - 1
+            For j As Integer = 0 To NumCellLato - 1
+                For k As Integer = 0 To NumCellLato - 1
+                    Dim X = CInt(Nsp(t(0), i, j, k).activity * ScaleFactor)
+                    ActivityDistribution(X) += 1
+
+                Next k
+            Next j
+        Next i
     End Sub
 
     Private Sub CreateNeurons()
@@ -264,7 +282,6 @@ Public Class CellularAutomata
         Sequenza()
 
     End Sub
-
 
     Private Function IsAlive(i, j, k) As Boolean
         If Neu(i, j, k).inactivity < NetworkConfiguration.cla And Neu(i, j, k).inactivity <> -1 Then
