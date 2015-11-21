@@ -18,6 +18,7 @@ Public Class CellularAutomata
     Public d() As Single ' Fattore moltiplicativo di retrodiffusione (Inverso al quadrato della distanza)
     Public dt(,,,) As Single
     Public globalActivity As Single
+    Public SynapticWeightDistribution As Integer(,)
 
 
     Public Sub New(config As Configuration)
@@ -88,6 +89,24 @@ Public Class CellularAutomata
         End Get
     End Property
 
+    Public Sub UpdateSynaptictWeightDistribution()
+        ReDim SynapticWeightDistribution(NetworkConfiguration.levels, 20)
+
+        For i As Integer = 0 To NumCellLato - 1
+            For j As Integer = 0 To NumCellLato - 1
+                For k As Integer = 0 To NumCellLato - 1
+                    For a As Integer = 0 To NumCellIntorno - 1
+                        Dim li = wlw(i, j, k, a) - 1
+
+                        ' Il peso sinaptico è compreso tra -1 e +1, bisogna normalizzarlo tra 0 e 20
+                        Dim X As Integer = CInt((Neu(i, j, k).sinapsi(a) + 1) * 10)
+                        SynapticWeightDistribution(li, X) += 1
+                    Next
+                Next
+            Next
+        Next
+
+    End Sub
 
     Private Sub CreateNeurons()
         For i As UInt16 = 0 To NumCellLato - 1
@@ -112,6 +131,7 @@ Public Class CellularAutomata
         sinapsilivelli()
         sinapsilivelli2()
     End Sub
+
     Private Sub Update(limit As MatrixLimit)
         With limit
             For i As Integer = .startX To .endX
