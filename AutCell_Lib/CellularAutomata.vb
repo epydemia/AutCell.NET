@@ -449,7 +449,7 @@ Public Class CellularAutomata
         Next li
     End Sub
 
-    Private Sub attivaneurone(i, j, k, sga)
+    Protected Overridable Sub attivaneurone(i, j, k, sga)
         Dim lv As Integer = NumLivelli
         Dim ar = NetworkConfiguration.sigmoide
         Dim pr = NetworkConfiguration.pr
@@ -473,14 +473,14 @@ Public Class CellularAutomata
             Next m
         Next l
 
+
+
         'nt = sga * nt / 100000000.0 : sg099 = s(0, i, j, k) / 100 ' Se nt e sga sono normalizzate a 1, non è chiaro perchè sg099 sia normalizzato a 100
         nt = sga * nt
         Dim sg099 = Neu(i, j, k).activity * 100
 
         Dim at = 1 / (1 + Math.Exp(-(nt - sg099) / ar)) ' tanto più che qui sg099 viene sottratto a nt...
         Nsp(t(0), i, j, k).activity = at
-
-        ' non è chiara la relazione tra sp e s
 
         'sg099 = s(0, i, j, k) + sg099 * (at / 0.9) * 100 - s(0, i, j, k) / pr
         's(0, i, j, k) = sg099
@@ -598,7 +598,7 @@ Public Class CellularAutomata
     End Function
 
 
-    Private Function limiterWrap(l As Integer) As Integer
+    Protected Function limiterWrap(l As Integer) As Integer
         Return (l + NumCellLato) Mod (NumCellLato)
     End Function
 End Class
