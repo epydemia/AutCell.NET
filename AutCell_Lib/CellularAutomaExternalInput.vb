@@ -6,7 +6,7 @@ Public Class CellularAutomateExternalInput
     ' Questa rete cellulare implementa un livello aggiuntivo di input (modificabile dall'utente) cablato con peso sinaptico definito in
     ' Neuron.ExternalInput sul piano i=0
 
-    Public InputLayer As Double(,)
+    Public InputLayer As Single(,)
     Public EnableExternalInput As Boolean = False
 
     Sub New(config As Configuration)
@@ -38,11 +38,13 @@ Public Class CellularAutomateExternalInput
             Next m
         Next l
 
+
         ' verifica se è un neurone di input ed è abilitato lo stimolo esterno
         If i = 0 And EnableExternalInput = True Then
             ' in caso positivo somma anche il valore del layer di input
             nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
         End If
+
 
         'nt = sga * nt / 100000000.0 : sg099 = s(0, i, j, k) / 100 ' Se nt e sga sono normalizzate a 1, non è chiaro perchè sg099 sia normalizzato a 100
         nt = sga * nt

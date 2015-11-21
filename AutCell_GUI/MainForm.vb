@@ -17,7 +17,7 @@ Public Class MainForm
     Private ThresholdDistribSeries As New ColumnSeries()
 
     Private Running As Boolean = False
-
+    Private ExternalInputEnabled = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim c As Configuration = New Configuration()
@@ -175,6 +175,19 @@ Public Class MainForm
             ThresholdDistribSeries.Items.Add(New ColumnItem(net.ThresholdDistribution(i), 0))
         Next
         ThresholdDistributionPlot.InvalidatePlot(True)
+    End Sub
+
+
+    Private Sub ExternalInputActivateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExternalInputActivateToolStripMenuItem.Click
+        ExternalInputEnabled = Not ExternalInputEnabled
+        net.EnableExternalInput = ExternalInputEnabled
+        ExternalInputToolStripMenuItem.Checked = ExternalInputEnabled
+    End Sub
+
+    Private Sub LoadEditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadEditToolStripMenuItem.Click
+        Dim ExtInputTable As New ExternalInputTable(net.NumCellLato, net.NumCellLato)
+        ExtInputTable.ShowDialog()
+        net.InputLayer = ExtInputTable.Matrix
     End Sub
 End Class
 

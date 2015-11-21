@@ -62,6 +62,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CellularAutomaExternalInput.vb" />
     <Compile Include="CellularAutomata.vb" />
     <Compile Include="Configuration.vb" />
     <Compile Include="Functions.vb" />

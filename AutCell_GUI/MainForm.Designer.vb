@@ -29,6 +29,8 @@ Partial Class MainForm
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExternalInputToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExternalInputActivateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
@@ -37,26 +39,27 @@ Partial Class MainForm
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.Plot_ActivityDistribution = New OxyPlot.WindowsForms.Plot()
         Me.Plot_ThresholdDistribution = New OxyPlot.WindowsForms.Plot()
-        Me.StatusStrip1.SuspendLayout
-        Me.MenuStrip1.SuspendLayout
-        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SplitContainer1.Panel1.SuspendLayout
-        Me.SplitContainer1.Panel2.SuspendLayout
-        Me.SplitContainer1.SuspendLayout
-        CType(Me.SplitContainer2,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SplitContainer2.Panel1.SuspendLayout
-        Me.SplitContainer2.Panel2.SuspendLayout
-        Me.SplitContainer2.SuspendLayout
-        CType(Me.SplitContainer3,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SplitContainer3.Panel1.SuspendLayout
-        Me.SplitContainer3.Panel2.SuspendLayout
-        Me.SplitContainer3.SuspendLayout
-        Me.SuspendLayout
+        Me.LoadEditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer3.Panel1.SuspendLayout()
+        Me.SplitContainer3.Panel2.SuspendLayout()
+        Me.SplitContainer3.SuspendLayout()
+        Me.SuspendLayout()
         '
         'BackgroundWorker2
         '
-        Me.BackgroundWorker2.WorkerReportsProgress = true
-        Me.BackgroundWorker2.WorkerSupportsCancellation = true
+        Me.BackgroundWorker2.WorkerReportsProgress = True
+        Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
         'StatusStrip1
         '
@@ -87,7 +90,7 @@ Partial Class MainForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.ExternalInputToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(905, 24)
@@ -100,13 +103,27 @@ Partial Class MainForm
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
         '
+        'ExternalInputToolStripMenuItem
+        '
+        Me.ExternalInputToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadEditToolStripMenuItem, Me.ExternalInputActivateToolStripMenuItem})
+        Me.ExternalInputToolStripMenuItem.Name = "ExternalInputToolStripMenuItem"
+        Me.ExternalInputToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
+        Me.ExternalInputToolStripMenuItem.Text = "External Input"
+        '
+        'ExternalInputActivateToolStripMenuItem
+        '
+        Me.ExternalInputActivateToolStripMenuItem.CheckOnClick = True
+        Me.ExternalInputActivateToolStripMenuItem.Name = "ExternalInputActivateToolStripMenuItem"
+        Me.ExternalInputActivateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExternalInputActivateToolStripMenuItem.Text = "Activate"
+        '
         'Splitter2
         '
         Me.Splitter2.Location = New System.Drawing.Point(0, 24)
         Me.Splitter2.Name = "Splitter2"
         Me.Splitter2.Size = New System.Drawing.Size(3, 466)
         Me.Splitter2.TabIndex = 7
-        Me.Splitter2.TabStop = false
+        Me.Splitter2.TabStop = False
         '
         'SplitContainer1
         '
@@ -220,9 +237,15 @@ Partial Class MainForm
         Me.Plot_ThresholdDistribution.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.Plot_ThresholdDistribution.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
+        'LoadEditToolStripMenuItem
+        '
+        Me.LoadEditToolStripMenuItem.Name = "LoadEditToolStripMenuItem"
+        Me.LoadEditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LoadEditToolStripMenuItem.Text = "Load/Edit..."
+        '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(905, 512)
         Me.Controls.Add(Me.SplitContainer1)
@@ -232,26 +255,26 @@ Partial Class MainForm
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MainForm"
         Me.Text = "AutCell"
-        Me.StatusStrip1.ResumeLayout(false)
-        Me.StatusStrip1.PerformLayout
-        Me.MenuStrip1.ResumeLayout(false)
-        Me.MenuStrip1.PerformLayout
-        Me.SplitContainer1.Panel1.ResumeLayout(false)
-        Me.SplitContainer1.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer1.ResumeLayout(false)
-        Me.SplitContainer2.Panel1.ResumeLayout(false)
-        Me.SplitContainer2.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer2.ResumeLayout(false)
-        Me.SplitContainer3.Panel1.ResumeLayout(false)
-        Me.SplitContainer3.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer3,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer3.ResumeLayout(false)
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        Me.SplitContainer3.Panel1.ResumeLayout(False)
+        Me.SplitContainer3.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer3.ResumeLayout(False)
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
@@ -267,5 +290,8 @@ End Sub
     Friend WithEvents Plot_WeightDistribution As OxyPlot.WindowsForms.Plot
     Friend WithEvents Plot_ActivityDistribution As OxyPlot.WindowsForms.Plot
     Friend WithEvents Plot_ThresholdDistribution As OxyPlot.WindowsForms.Plot
+    Friend WithEvents ExternalInputToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExternalInputActivateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LoadEditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
