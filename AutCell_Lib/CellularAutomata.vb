@@ -34,6 +34,7 @@ Public Class CellularAutomata
         Init()
     End Sub
 
+
     Private Sub New(CellLato As UInt16, Livelli As UInt16)
         NumCellLato = CellLato
         NumLivelli = Livelli
@@ -92,6 +93,18 @@ Public Class CellularAutomata
     Public ReadOnly Property amd2 As Single
         Get
             Return sgmd * (NetworkConfiguration.initialAverageWeight - NetworkConfiguration.vw) * 0.5
+        End Get
+    End Property
+
+    Public ReadOnly Property GetLayer(layerNumber As Integer) As Single(,)
+        Get
+            Dim Layer(NumCellLato - 1, NumCellLato - 1) As Single
+            For j As Integer = 0 To NumCellLato - 1
+                For k As Integer = 0 To NumCellLato - 1
+                    Layer(j, k) = Neu(layerNumber, j, k).activity
+                Next
+            Next
+            Return Layer
         End Get
     End Property
 
@@ -227,7 +240,7 @@ Public Class CellularAutomata
 
                         Select Case NetworkConfiguration.modulation
                             Case Is = TModulation.Amplitude
-                                attivaneurone(i, j, k, NetworkConfiguration.sigmoide)
+                                attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain)
                             Case Is = TModulation.Frequency
                                 ' To Do
                         End Select
@@ -273,7 +286,7 @@ Public Class CellularAutomata
 
                                                      Select Case NetworkConfiguration.modulation
                                                          Case Is = TModulation.Amplitude
-                                                             attivaneurone(i, j, k, NetworkConfiguration.sigmoide)
+                                                             attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain)
                                                          Case Is = TModulation.Frequency
                                                              ' To Do
                                                      End Select
@@ -281,7 +294,6 @@ Public Class CellularAutomata
                                                      globalActivity += Nsp(t(0), i, j, k).activity
 
                                                  End If
-
 
                                              Next
                                          Next
@@ -596,7 +608,6 @@ Public Class CellularAutomata
         If dato > max Then Return max
         Return dato
     End Function
-
 
     Protected Function limiterWrap(l As Integer) As Integer
         Return (l + NumCellLato) Mod (NumCellLato)

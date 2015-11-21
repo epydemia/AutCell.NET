@@ -15,6 +15,13 @@ Public Class CellularAutomateExternalInput
     End Sub
 
     Protected Overrides Sub attivaneurone(i, j, k, sga)
+
+#If 0 Then
+        If i = 9 Then
+            Dim dummy = 1
+        End If
+#End If
+
         Dim lv As Integer = NumLivelli
         Dim ar = NetworkConfiguration.sigmoide
         Dim pr = NetworkConfiguration.pr
