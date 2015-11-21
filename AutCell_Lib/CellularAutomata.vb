@@ -2,6 +2,9 @@
 Imports System.Threading
 
 Public Class CellularAutomata
+    Public Const NumeroIntervalliDistribuzione = 20
+
+
     Public parallelEnabled As Boolean = False
     Public time As UInt32  ' Questo è il tempo numero di ciclo di simulazione
 
@@ -19,7 +22,6 @@ Public Class CellularAutomata
     Public dt(,,,) As Single
     Public globalActivity As Single
     Public SynapticWeightDistribution As Integer(,)
-
 
     Public Sub New(config As Configuration)
         Me.New(config.cellforEachSide, config.levels)
@@ -90,7 +92,11 @@ Public Class CellularAutomata
     End Property
 
     Public Sub UpdateSynaptictWeightDistribution()
-        ReDim SynapticWeightDistribution(NetworkConfiguration.levels, 20)
+        ReDim SynapticWeightDistribution(NetworkConfiguration.levels, NumeroIntervalliDistribuzione)
+
+        Dim MinValue = -1
+        Dim MaxValue = 1
+        Dim ScaleFactor = NumeroIntervalliDistribuzione / (MaxValue - MinValue)
 
         For i As Integer = 0 To NumCellLato - 1
             For j As Integer = 0 To NumCellLato - 1
@@ -99,7 +105,7 @@ Public Class CellularAutomata
                         Dim li = wlw(i, j, k, a) - 1
 
                         ' Il peso sinaptico è compreso tra -1 e +1, bisogna normalizzarlo tra 0 e 20
-                        Dim X As Integer = CInt((Neu(i, j, k).sinapsi(a) + 1) * 10)
+                        Dim X As Integer = CInt((Neu(i, j, k).sinapsi(a) - MinValue) * ScaleFactor)
                         SynapticWeightDistribution(li, X) += 1
                     Next
                 Next
@@ -126,7 +132,7 @@ Public Class CellularAutomata
 
     Public Sub Init()
         amps()
-        tempi()
+        Tempi()
         retrodiffusione()
         sinapsilivelli()
         sinapsilivelli2()
