@@ -2,6 +2,7 @@
 Public Class MonitorLayer
     Public LayerBitMap As Bitmap(,)
     Public LayerPictureBox As PictureBox(,)
+    Public Gain As Single = 255
     Private Rows, Columns As Integer
     Public Sub New(Rows As Integer, Columns As Integer)
         Me.Rows = Rows
@@ -70,16 +71,18 @@ Public Class MonitorLayer
         Dim gfx As Graphics = Graphics.FromImage(Image)
         Dim pW As Integer = Image.Width / (Matrix.GetUpperBound(1) + 1) 'pixelPerElementWidth 
         Dim pH As Integer = Image.Height / (Matrix.GetUpperBound(0) + 1) 'pixedPerElementHeight 
+
         For i As Integer = 0 To Matrix.GetUpperBound(0)
             For j As Integer = 0 To Matrix.GetUpperBound(1)
 
-                Dim val = Convert.ToInt16(Matrix(i, j) * 100)
-                Dim Brush As New SolidBrush(Color.FromArgb(val, val, val))
+                Dim val = Limit(Convert.ToInt16(Matrix(i, j) * Gain), 255)
+                Dim brush As SolidBrush
+                If val < 255 Then
+                    brush = New SolidBrush(Color.FromArgb(val, val, val))
+                Else
+                    brush = New SolidBrush(Color.FromArgb(255))
+                End If
                 gfx.FillRectangle(Brush, j * pW, i * pH, pW, pH)
-
-
-
-
 
             Next
         Next
@@ -95,4 +98,10 @@ Public Class MonitorLayer
         Return index Mod Columns
     End Function
 
+    Private Function Limit(value, maxValue)
+        If value < maxValue Then
+            Return value
+        End If
+        Return maxValue
+    End Function
 End Class
