@@ -1,10 +1,15 @@
 ﻿Imports AutCell_Lib
 Imports OxyPlot
+Imports OxyPlot.Series
 
 Public Class MainForm
     Public net As CellularAutomata
     Private ActivityPlot As New PlotModel()
-    Private ActivitySeries As New Series.LineSeries()
+    Private ActivitySeries As New LineSeries()
+
+    Private WeightDistributionPlot As New PlotModel()
+    Private WeightDistributionSeries As New ColumnSeries()
+
     Private Running As Boolean = False
 
 
@@ -20,9 +25,27 @@ Public Class MainForm
 
 
         ' Set up Activity Plot
-        ActivityPlot.Series.Add(ActivitySeries)
-        GlobalActivity.Model = ActivityPlot
-        ActivityPlot.Axes.Add(New Axes.LinearAxis(pos:=Axes.AxisPosition.Bottom, Minimum:=0, Maximum:=1000))
+        With ActivityPlot
+            .Title = "Global Activity"
+            .Series.Add(ActivitySeries)
+            GlobalActivity.Model = ActivityPlot
+            .Axes.Add(New Axes.LinearAxis(pos:=Axes.AxisPosition.Bottom, minimum:=0, maximum:=1000))
+        End With
+
+
+        'Set up Weight Distribution
+        With WeightDistributionPlot
+            .Title = "Synaptic Weight Distribution"
+            .Series.Add(WeightDistributionSeries)
+            DistribuzionePesi.Model = WeightDistributionPlot
+            Dim CategoryAxis As New Axes.CategoryAxis()
+            For lv As Integer = 1 To net.NumLivelli
+                CategoryAxis.Labels.Add("Level " + lv.ToString())
+            Next
+            .Axes.Add(CategoryAxis)
+        End With
+
+
 
         ' Set Up Status Bar
         ToolStripStatusLabel2.Spring = True
@@ -43,9 +66,10 @@ Public Class MainForm
 
                 'net.Update()
                 net.UpdateParallelFor()
+                net.UpdateSynaptictWeightDistribution()
 
-                ActivitySeries.Points.Add(New Series.ScatterPoint(i, net.globalActivity))
-                GlobalActivity.InvalidatePlot(True)
+                UpdateActivityPlot(i, net.globalActivity)
+                UpdateWeightDistributionPlot(net)
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
 
@@ -85,6 +109,23 @@ Public Class MainForm
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Running = False
         updateStatusBar()
+    End Sub
+
+
+    Private Sub UpdateActivityPlot(ByVal stepIndex As Double, ByVal globalActivityValue As Double)
+        ActivitySeries.Points.Add(New ScatterPoint(stepIndex, globalActivityValue))
+        GlobalActivity.InvalidatePlot(True)
+    End Sub
+
+    Private Sub UpdateWeightDistributionPlot(ByRef net As CellularAutomata)
+        WeightDistributionSeries.Items.Clear()
+        For lv = 0 To net.NumLivelli - 1
+            For i As Integer = 0 To 20
+                WeightDistributionSeries.Items.Add(New ColumnItem(net.SynapticWeightDistribution(0, i), lv))
+            Next
+        Next
+
+        WeightDistributionPlot.InvalidatePlot(True)
     End Sub
 End Class
 

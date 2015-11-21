@@ -32,11 +32,21 @@ Partial Class MainForm
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GlobalActivity = New OxyPlot.WindowsForms.Plot()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
+        Me.DistribuzionePesi = New OxyPlot.WindowsForms.Plot()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer3.SuspendLayout()
         Me.SuspendLayout()
         '
         'BackgroundWorker2
@@ -101,9 +111,13 @@ Partial Class MainForm
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.SplitContainer2)
+        '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.GlobalActivity)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer3)
         Me.SplitContainer1.Size = New System.Drawing.Size(902, 466)
         Me.SplitContainer1.SplitterDistance = 233
         Me.SplitContainer1.TabIndex = 11
@@ -116,12 +130,53 @@ Partial Class MainForm
         Me.GlobalActivity.Location = New System.Drawing.Point(0, 0)
         Me.GlobalActivity.Name = "GlobalActivity"
         Me.GlobalActivity.PanCursor = System.Windows.Forms.Cursors.Hand
-        Me.GlobalActivity.Size = New System.Drawing.Size(902, 229)
+        Me.GlobalActivity.Size = New System.Drawing.Size(485, 233)
         Me.GlobalActivity.TabIndex = 11
         Me.GlobalActivity.Text = "Plot1"
         Me.GlobalActivity.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE
         Me.GlobalActivity.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.GlobalActivity.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
+        '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.GlobalActivity)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.DistribuzionePesi)
+        Me.SplitContainer2.Size = New System.Drawing.Size(902, 233)
+        Me.SplitContainer2.SplitterDistance = 485
+        Me.SplitContainer2.TabIndex = 0
+        '
+        'SplitContainer3
+        '
+        Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer3.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer3.Name = "SplitContainer3"
+        Me.SplitContainer3.Size = New System.Drawing.Size(902, 229)
+        Me.SplitContainer3.SplitterDistance = 479
+        Me.SplitContainer3.TabIndex = 0
+        '
+        'DistribuzionePesi
+        '
+        Me.DistribuzionePesi.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DistribuzionePesi.KeyboardPanHorizontalStep = 0.1R
+        Me.DistribuzionePesi.KeyboardPanVerticalStep = 0.1R
+        Me.DistribuzionePesi.Location = New System.Drawing.Point(0, 0)
+        Me.DistribuzionePesi.Name = "DistribuzionePesi"
+        Me.DistribuzionePesi.PanCursor = System.Windows.Forms.Cursors.Hand
+        Me.DistribuzionePesi.Size = New System.Drawing.Size(413, 233)
+        Me.DistribuzionePesi.TabIndex = 12
+        Me.DistribuzionePesi.Text = "Plot1"
+        Me.DistribuzionePesi.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE
+        Me.DistribuzionePesi.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
+        Me.DistribuzionePesi.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
         'MainForm
         '
@@ -139,9 +194,16 @@ Partial Class MainForm
         Me.StatusStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -156,5 +218,8 @@ Partial Class MainForm
     Friend WithEvents Splitter2 As System.Windows.Forms.Splitter
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents GlobalActivity As OxyPlot.WindowsForms.Plot
+    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
+    Friend WithEvents DistribuzionePesi As OxyPlot.WindowsForms.Plot
 
 End Class
