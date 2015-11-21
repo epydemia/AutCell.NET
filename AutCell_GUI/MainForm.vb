@@ -13,6 +13,9 @@ Public Class MainForm
     Private ActivityDistributionPlot As New PlotModel()
     Private ActDistribSeries As New ColumnSeries()
 
+    Private ThresholdDistributionPlot As New PlotModel()
+    Private ThresholdDistribSeries As New ColumnSeries()
+
     Private Running As Boolean = False
 
 
@@ -31,7 +34,7 @@ Public Class MainForm
         With ActivityPlot
             .Title = "Global Activity"
             .Series.Add(ActivitySeries)
-            GlobalActivity.Model = ActivityPlot
+            Plot_GlobalActivity.Model = ActivityPlot
             .Axes.Add(New Axes.LinearAxis(pos:=Axes.AxisPosition.Bottom, minimum:=0, maximum:=1000))
         End With
 
@@ -40,7 +43,7 @@ Public Class MainForm
         With WeightDistributionPlot
             .Title = "Synaptic Weight Distribution"
             .Series.Add(WeightDistributionSeries)
-            DistribuzionePesi.Model = WeightDistributionPlot
+            Plot_WeightDistribution.Model = WeightDistributionPlot
             Dim CategoryAxis As New Axes.CategoryAxis()
             For lv As Integer = 1 To net.NumLivelli
                 CategoryAxis.Labels.Add("Level " + lv.ToString())
@@ -52,9 +55,20 @@ Public Class MainForm
         With ActivityDistributionPlot
             .Title = "Activity Distribution"
             .Series.Add(ActDistribSeries)
-            ActivityDistribution.Model = ActivityDistributionPlot
+            Plot_ActivityDistribution.Model = ActivityDistributionPlot
             Dim CategoryAxis As New Axes.CategoryAxis()
             CategoryAxis.Labels.Add("Activity")
+            .Axes.Add(CategoryAxis)
+        End With
+
+
+        'Set Up Activity distribution
+        With ThresholdDistributionPlot
+            .Title = "Threshold Distribution"
+            .Series.Add(ThresholdDistribSeries)
+            Plot_ThresholdDistribution.Model = ThresholdDistributionPlot
+            Dim CategoryAxis As New Axes.CategoryAxis()
+            CategoryAxis.Labels.Add("Threshold")
             .Axes.Add(CategoryAxis)
         End With
 
@@ -80,10 +94,13 @@ Public Class MainForm
                 net.UpdateParallelFor()
                 net.UpdateSynaptictWeightDistribution()
                 net.UpdateActivityDistribution()
+                net.UpdateThresholdDistribution()
+
 
                 UpdateActivityPlot(i, net.globalActivity)
                 UpdateWeightDistributionPlot(net)
-                UpdataActivityDistributionPlot(net)
+                UpdateActivityDistributionPlot(net)
+                UpdateThresholdDistributionPlot(net)
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
@@ -102,7 +119,7 @@ Public Class MainForm
             Running = True
 
             ActivitySeries.Points.Clear()
-            GlobalActivity.InvalidatePlot(True)
+            Plot_GlobalActivity.InvalidatePlot(True)
             BackgroundWorker2.RunWorkerAsync()
 
         Else
@@ -129,7 +146,7 @@ Public Class MainForm
 
     Private Sub UpdateActivityPlot(ByVal stepIndex As Double, ByVal globalActivityValue As Double)
         ActivitySeries.Points.Add(New ScatterPoint(stepIndex, globalActivityValue))
-        GlobalActivity.InvalidatePlot(True)
+        Plot_GlobalActivity.InvalidatePlot(True)
     End Sub
 
     Private Sub UpdateWeightDistributionPlot(ByRef net As CellularAutomata)
@@ -143,13 +160,21 @@ Public Class MainForm
         WeightDistributionPlot.InvalidatePlot(True)
     End Sub
 
-    Private Sub UpdataActivityDistributionPlot(ByRef net As CellularAutomata)
+    Private Sub UpdateActivityDistributionPlot(ByRef net As CellularAutomata)
         ActDistribSeries.Items.Clear()
         For i As Integer = 0 To CellularAutomata.NumeroIntervalliDistribuzione
             ActDistribSeries.Items.Add(New ColumnItem(net.ActivityDistribution(i), 0))
 
         Next
         ActivityDistributionPlot.InvalidatePlot(True)
+    End Sub
+
+    Private Sub UpdateThresholdDistributionPlot(ByRef net As CellularAutomata)
+        ThresholdDistribSeries.Items.Clear()
+        For i As Integer = 0 To net.ThresholdDistribution.Length - 1
+            ThresholdDistribSeries.Items.Add(New ColumnItem(net.ThresholdDistribution(i), 0))
+        Next
+        ThresholdDistributionPlot.InvalidatePlot(True)
     End Sub
 End Class
 
