@@ -3,7 +3,7 @@ Imports OxyPlot
 Imports OxyPlot.Series
 
 Public Class MainForm
-    Public net As CellularAutomata
+    Public net As CellularAutomateExternalInput
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New LineSeries()
 
@@ -25,7 +25,7 @@ Public Class MainForm
         'c.levels = parametri.ParametriRete.lv
         c.fromXMLFile("prova.xml")
         'Dim net As CellularAutomata
-        net = New CellularAutomata(c)
+        net = New CellularAutomateExternalInput(c)
 
         BackgroundWorker2.WorkerReportsProgress = True
 
