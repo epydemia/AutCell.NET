@@ -4,6 +4,9 @@ Imports OxyPlot.Series
 
 Public Class MainForm
     Public net As CellularAutomateExternalInput
+
+    Public LayerMonitor As MonitorLayer
+
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New LineSeries()
 
@@ -80,6 +83,8 @@ Public Class MainForm
         ToolStripProgressBar1.Maximum = 100
         ToolStripProgressBar1.Alignment = ToolStripItemAlignment.Right
 
+        'Set up MonitorLayer Window
+        LayerMonitor = New MonitorLayer(3, 4)
 
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
@@ -89,18 +94,19 @@ Public Class MainForm
                 e.Cancel = True
 
             Else
-
-                'net.Update()
-                net.UpdateParallelFor()
+                net.Update()
+                'net.UpdateParallelFor()
                 net.UpdateSynaptictWeightDistribution()
                 net.UpdateActivityDistribution()
                 net.UpdateThresholdDistribution()
 
-
+                ' Update GUI
                 UpdateActivityPlot(i, net.globalActivity)
                 UpdateWeightDistributionPlot(net)
                 UpdateActivityDistributionPlot(net)
                 UpdateThresholdDistributionPlot(net)
+
+                LayerMonitor.UpdateWindow(net)
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
@@ -188,6 +194,10 @@ Public Class MainForm
         Dim ExtInputTable As New ExternalInputTable(net.NumCellLato, net.NumCellLato)
         ExtInputTable.ShowDialog()
         net.InputLayer = ExtInputTable.Matrix
+    End Sub
+
+    Private Sub LayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LayerToolStripMenuItem.Click
+        LayerMonitor.Show()
     End Sub
 End Class
 

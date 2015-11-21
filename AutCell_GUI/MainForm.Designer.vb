@@ -30,6 +30,7 @@ Partial Class MainForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExternalInputToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadEditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExternalInputActivateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
@@ -39,7 +40,8 @@ Partial Class MainForm
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.Plot_ActivityDistribution = New OxyPlot.WindowsForms.Plot()
         Me.Plot_ThresholdDistribution = New OxyPlot.WindowsForms.Plot()
-        Me.LoadEditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonitorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LayerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +92,7 @@ Partial Class MainForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.ExternalInputToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.ExternalInputToolStripMenuItem, Me.MonitorToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(905, 24)
@@ -110,11 +112,17 @@ Partial Class MainForm
         Me.ExternalInputToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
         Me.ExternalInputToolStripMenuItem.Text = "External Input"
         '
+        'LoadEditToolStripMenuItem
+        '
+        Me.LoadEditToolStripMenuItem.Name = "LoadEditToolStripMenuItem"
+        Me.LoadEditToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.LoadEditToolStripMenuItem.Text = "Load/Edit..."
+        '
         'ExternalInputActivateToolStripMenuItem
         '
         Me.ExternalInputActivateToolStripMenuItem.CheckOnClick = True
         Me.ExternalInputActivateToolStripMenuItem.Name = "ExternalInputActivateToolStripMenuItem"
-        Me.ExternalInputActivateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExternalInputActivateToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.ExternalInputActivateToolStripMenuItem.Text = "Activate"
         '
         'Splitter2
@@ -237,11 +245,18 @@ Partial Class MainForm
         Me.Plot_ThresholdDistribution.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.Plot_ThresholdDistribution.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
-        'LoadEditToolStripMenuItem
+        'MonitorToolStripMenuItem
         '
-        Me.LoadEditToolStripMenuItem.Name = "LoadEditToolStripMenuItem"
-        Me.LoadEditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.LoadEditToolStripMenuItem.Text = "Load/Edit..."
+        Me.MonitorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LayerToolStripMenuItem})
+        Me.MonitorToolStripMenuItem.Name = "MonitorToolStripMenuItem"
+        Me.MonitorToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
+        Me.MonitorToolStripMenuItem.Text = "Monitor"
+        '
+        'LayerToolStripMenuItem
+        '
+        Me.LayerToolStripMenuItem.Name = "LayerToolStripMenuItem"
+        Me.LayerToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LayerToolStripMenuItem.Text = "Layer"
         '
         'MainForm
         '
@@ -293,5 +308,7 @@ Partial Class MainForm
     Friend WithEvents ExternalInputToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExternalInputActivateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadEditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MonitorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LayerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
