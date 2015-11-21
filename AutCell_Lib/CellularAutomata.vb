@@ -2,7 +2,7 @@
 Imports System.Threading
 
 Public Class CellularAutomata
-    Public Const NumeroIntervalliDistribuzione = 20
+    Public Const NumeroIntervalliDistribuzione = 100
 
 
     Public parallelEnabled As Boolean = False
@@ -20,9 +20,12 @@ Public Class CellularAutomata
     Public wl() As Int16
     Public d() As Single ' Fattore moltiplicativo di retrodiffusione (Inverso al quadrato della distanza)
     Public dt(,,,) As Single
+
+    'Questi Dati sono utilizzati per monitoring
     Public globalActivity As Single
     Public SynapticWeightDistribution As Integer(,)
     Public ActivityDistribution As Integer()
+    Public ThresholdDistribution As Integer()
 
     Public Sub New(config As Configuration)
         Me.New(config.cellforEachSide, config.levels)
@@ -130,6 +133,27 @@ Public Class CellularAutomata
                 Next k
             Next j
         Next i
+    End Sub
+
+    Public Sub UpdateThresholdDistribution()
+        ' Si scala supponendo come valore centrale il valore massimo raggiungibile
+        Dim scaleFactor = NumeroIntervalliDistribuzione '/ (2 * ami)
+        ReDim ThresholdDistribution(NumeroIntervalliDistribuzione)
+
+        For i As Integer = 0 To NumCellLato - 1
+            For j As Integer = 0 To NumCellLato - 1
+                For k As Integer = 0 To NumCellLato - 1
+
+                    Dim X As Integer = CInt(Neu(i, j, k).activity * scaleFactor)
+                    If X > NumeroIntervalliDistribuzione Then
+                        ReDim Preserve ThresholdDistribution(X)
+                    End If
+                    ThresholdDistribution(X) += 1
+
+                Next k
+            Next j
+        Next i
+
     End Sub
 
     Private Sub CreateNeurons()
