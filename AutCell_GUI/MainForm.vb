@@ -10,6 +10,9 @@ Public Class MainForm
     Private WeightDistributionPlot As New PlotModel()
     Private WeightDistributionSeries As New ColumnSeries()
 
+    Private ActivityDistributionPlot As New PlotModel()
+    Private ActDistribSeries As New ColumnSeries()
+
     Private Running As Boolean = False
 
 
@@ -45,6 +48,15 @@ Public Class MainForm
             .Axes.Add(CategoryAxis)
         End With
 
+        'Set Up Activity distribution
+        With ActivityDistributionPlot
+            .Title = "Activity Distribution"
+            .Series.Add(ActDistribSeries)
+            ActivityDistribution.Model = ActivityDistributionPlot
+            Dim CategoryAxis As New Axes.CategoryAxis()
+            CategoryAxis.Labels.Add("Activity")
+            .Axes.Add(CategoryAxis)
+        End With
 
 
         ' Set Up Status Bar
@@ -67,9 +79,12 @@ Public Class MainForm
                 'net.Update()
                 net.UpdateParallelFor()
                 net.UpdateSynaptictWeightDistribution()
+                net.UpdateActivityDistribution()
 
                 UpdateActivityPlot(i, net.globalActivity)
                 UpdateWeightDistributionPlot(net)
+                UpdataActivityDistributionPlot(net)
+
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
 
@@ -120,12 +135,21 @@ Public Class MainForm
     Private Sub UpdateWeightDistributionPlot(ByRef net As CellularAutomata)
         WeightDistributionSeries.Items.Clear()
         For lv = 0 To net.NumLivelli - 1
-            For i As Integer = 0 To 20
-                WeightDistributionSeries.Items.Add(New ColumnItem(net.SynapticWeightDistribution(0, i), lv))
+            For i As Integer = 0 To CellularAutomata.NumeroIntervalliDistribuzione
+                WeightDistributionSeries.Items.Add(New ColumnItem(net.SynapticWeightDistribution(lv, i), lv))
             Next
         Next
 
         WeightDistributionPlot.InvalidatePlot(True)
+    End Sub
+
+    Private Sub UpdataActivityDistributionPlot(ByRef net As CellularAutomata)
+        ActDistribSeries.Items.Clear()
+        For i As Integer = 0 To CellularAutomata.NumeroIntervalliDistribuzione
+            ActDistribSeries.Items.Add(New ColumnItem(net.ActivityDistribution(i), 0))
+
+        Next
+        ActivityDistributionPlot.InvalidatePlot(True)
     End Sub
 End Class
 
