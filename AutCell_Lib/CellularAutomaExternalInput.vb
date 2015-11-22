@@ -8,6 +8,7 @@ Public Class CellularAutomateExternalInput
 
     Public InputLayer As Single(,)
     Public EnableExternalInput As Boolean = False
+    Public counter As Integer = 0
 
     Sub New(config As Configuration)
         MyBase.New(config)
@@ -48,8 +49,14 @@ Public Class CellularAutomateExternalInput
 
         ' verifica se è un neurone di input ed è abilitato lo stimolo esterno
         If i = 0 And EnableExternalInput = True Then
-            ' in caso positivo somma anche il valore del layer di input
-            nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
+            If counter \ 5 = 0 Then
+                ' in caso positivo somma anche il valore del layer di input
+                nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
+            ElseIf counter >= 10 Then
+                counter = -1
+            End If
+
+            counter += 1
         End If
 
 
