@@ -1,10 +1,18 @@
 ﻿Imports AutCell_Lib
+
+Public Enum MonitorType
+    Activity
+    Activation
+End Enum
+
 Public Class MonitorLayer
+    Public MonitorType As MonitorType
     Public LayerBitMap As Bitmap(,)
     Public LayerPictureBox As PictureBox(,)
     Public Gain As Single = 255
     Private Rows, Columns As Integer
-    Public Sub New(Rows As Integer, Columns As Integer)
+    Public Sub New(Rows As Integer, Columns As Integer, MonType As MonitorType)
+        MonitorType = MonType
         Me.Rows = Rows
         Me.Columns = Columns
 
@@ -33,7 +41,7 @@ Public Class MonitorLayer
     End Sub
 
     Private Sub MonitorLayer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        
+
 
 #If 0 Then
         'Used to Test CreateImageFromMatrix
@@ -59,30 +67,39 @@ Public Class MonitorLayer
         For i As Integer = 0 To net.NumCellLato - 1
             Dim row = GetRowFromIndex(i)
             Dim col = GetColumnsFromIndex(i)
+            Select Case MonitorType
+                Case Is = AutCell_GUI.MonitorType.Activity
+                    CreateImageFromMatrix(net.GetLayer(i), LayerBitMap(row, col))
+                Case Is = AutCell_GUI.MonitorType.Activation
+                    CreateImageFromMatrix(net.GetActivationLayer(i), LayerBitMap(row, col))
+            End Select
 
-            CreateImageFromMatrix(net.GetLayer(i), LayerBitMap(row, col))
             LayerPictureBox(row, col).Image = LayerBitMap(row, col)
 
 
         Next
+
     End Sub
 
     Public Sub CreateImageFromMatrix(ByVal Matrix As Single(,), ByRef Image As Bitmap)
         Dim gfx As Graphics = Graphics.FromImage(Image)
         Dim pW As Integer = Image.Width / (Matrix.GetUpperBound(1) + 1) 'pixelPerElementWidth 
         Dim pH As Integer = Image.Height / (Matrix.GetUpperBound(0) + 1) 'pixedPerElementHeight 
-
+        Dim val As Integer
         For i As Integer = 0 To Matrix.GetUpperBound(0)
             For j As Integer = 0 To Matrix.GetUpperBound(1)
-
-                Dim val = Limit(Convert.ToInt16(Matrix(i, j) * Gain), 255)
+                If Matrix(i, j) > 0.5 Then
+                    val = Limit(Convert.ToInt16(Matrix(i, j) * Gain), 255)
+                Else
+                    val = 0
+                End If
                 Dim brush As SolidBrush
                 If val < 255 Then
                     brush = New SolidBrush(Color.FromArgb(val, val, val))
                 Else
                     brush = New SolidBrush(Color.FromArgb(255))
                 End If
-                gfx.FillRectangle(Brush, j * pW, i * pH, pW, pH)
+                gfx.FillRectangle(brush, j * pW, i * pH, pW, pH)
 
             Next
         Next

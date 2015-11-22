@@ -6,6 +6,7 @@ Public Class MainForm
     Public net As CellularAutomateExternalInput
 
     Public LayerMonitor As MonitorLayer
+    Public ActivationMonitor As MonitorLayer
 
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New LineSeries()
@@ -21,6 +22,7 @@ Public Class MainForm
 
     Private Running As Boolean = False
     Private ExternalInputEnabled = False
+    Private LockSynapse = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim c As Configuration = New Configuration()
@@ -84,8 +86,8 @@ Public Class MainForm
         ToolStripProgressBar1.Alignment = ToolStripItemAlignment.Right
 
         'Set up MonitorLayer Window
-        LayerMonitor = New MonitorLayer(3, 4)
-
+        LayerMonitor = New MonitorLayer(3, 4, MonitorType.Activity)
+        ActivationMonitor = New MonitorLayer(3, 4, MonitorType.Activation)
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
 
@@ -107,6 +109,7 @@ Public Class MainForm
                 UpdateThresholdDistributionPlot(net)
 
                 LayerMonitor.UpdateWindow(net)
+                ActivationMonitor.UpdateWindow(net)
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
@@ -187,6 +190,7 @@ Public Class MainForm
     Private Sub ExternalInputActivateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExternalInputActivateToolStripMenuItem.Click
         ExternalInputEnabled = Not ExternalInputEnabled
         net.EnableExternalInput = ExternalInputEnabled
+
         ExternalInputToolStripMenuItem.Checked = ExternalInputEnabled
     End Sub
 
@@ -197,7 +201,19 @@ Public Class MainForm
     End Sub
 
     Private Sub LayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LayerToolStripMenuItem.Click
+        LayerMonitor.Text = "Activity"
         LayerMonitor.Show()
+    End Sub
+
+    Private Sub LockSynapticWeightToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LockSynapticWeightToolStripMenuItem.Click
+        LockSynapse = Not LockSynapse
+        LockSynapticWeightToolStripMenuItem.Checked = LockSynapse
+        net.lockSynapticWeight = LockSynapse
+    End Sub
+
+    Private Sub ActivationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActivationToolStripMenuItem.Click
+        ActivationMonitor.Text = "Activation"
+        ActivationMonitor.Show()
     End Sub
 End Class
 
