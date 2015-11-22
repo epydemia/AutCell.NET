@@ -4,8 +4,9 @@ Imports System.Threading
 Public Class CellularAutomata
     Public Const NumeroIntervalliDistribuzione = 100
 
-
     Public parallelEnabled As Boolean = False
+    Public lockSynapticWeight As Boolean = False
+
     Public time As UInt32  ' Questo è il tempo numero di ciclo di simulazione
 
     Public t() As Int16
@@ -102,6 +103,18 @@ Public Class CellularAutomata
             For j As Integer = 0 To NumCellLato - 1
                 For k As Integer = 0 To NumCellLato - 1
                     Layer(j, k) = Neu(layerNumber, j, k).activity
+                Next
+            Next
+            Return Layer
+        End Get
+    End Property
+
+    Public ReadOnly Property GetActivationLayer(layerNumber As Integer) As Single(,)
+        Get
+            Dim Layer(NumCellLato - 1, NumCellLato - 1) As Single
+            For j As Integer = 0 To NumCellLato - 1
+                For k As Integer = 0 To NumCellLato - 1
+                    Layer(j, k) = Nsp(t(0), layerNumber, j, k).activity
                 Next
             Next
             Return Layer
@@ -255,21 +268,25 @@ Public Class CellularAutomata
         Next
 #End If
 
-        For i As Integer = 0 To NumCellLato - 1
-            For j As Integer = 0 To NumCellLato - 1
-                For k As Integer = 0 To NumCellLato - 1
-                    If IsAlive(i, j, k) Then
-                        If NetworkConfiguration.Hebb = True Then modpesDH(i, j, k)
-                        'If NetworkConfiguration.Kandel = True then modPesK(i,j,k)
-                        'If NetworkConfiguration.BackProp = True then modPesR(i,j,k)
-                    End If
+        If lockSynapticWeight = False Then
+            For i As Integer = 0 To NumCellLato - 1
+                For j As Integer = 0 To NumCellLato - 1
+                    For k As Integer = 0 To NumCellLato - 1
+                        If IsAlive(i, j, k) Then
+                            If NetworkConfiguration.Hebb = True Then modpesDH(i, j, k)
+                            'If NetworkConfiguration.Kandel = True then modPesK(i,j,k)
+                            'If NetworkConfiguration.BackProp = True then modPesR(i,j,k)
+                        End If
 
 
+                    Next
                 Next
             Next
-        Next
 
-        aggiornaSinapsi()
+            aggiornaSinapsi()
+
+        End If
+
         Sequenza()
 
     End Sub
