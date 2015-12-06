@@ -197,7 +197,10 @@ Public Class MainForm
     Private Sub LoadEditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadEditToolStripMenuItem.Click
         Dim ExtInputTable As New ExternalInputTable(net.NumCellLato, net.NumCellLato)
         ExtInputTable.ShowDialog()
-        net.InputLayer = ExtInputTable.Matrix
+        net.InputSequence = New ExternalInput(net.NumCellLato, 1)
+
+        net.InputSequence.Data(0).Value = ExtInputTable.Matrix
+        'net.InputLayer = ExtInputTable.Matrix
     End Sub
 
     Private Sub LayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LayerToolStripMenuItem.Click

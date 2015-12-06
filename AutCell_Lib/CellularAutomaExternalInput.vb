@@ -5,23 +5,41 @@ Public Class CellularAutomateExternalInput
 
     ' Questa rete cellulare implementa un livello aggiuntivo di input (modificabile dall'utente) cablato con peso sinaptico definito in
     ' Neuron.ExternalInput sul piano i=0
-
+    Public InputSequence As ExternalInput
     Public InputLayer As Single(,)
     Public EnableExternalInput As Boolean = False
     Public counter As Integer = 0
+
 
     Sub New(config As Configuration)
         MyBase.New(config)
         ReDim InputLayer(NumCellLato - 1, NumCellLato - 1)
     End Sub
+    Private Sub PrepareInputLayer(numciclo As Integer)
+        Dim DutyCycleLength As UInt16 = 5
+        Dim Frequency As UInt16 = 10
 
-    Protected Overrides Sub attivaneurone(i, j, k, sga)
+        Dim NullStimulus(Me.NumCellLato - 1, Me.NumCellLato - 1) As Single
+        If numciclo Mod Frequency > DutyCycleLength Then
+            InputLayer = NullStimulus
+        Else
+            Dim t As Integer = numciclo Mod InputSequence.Data.Length
+            InputLayer = InputSequence.Data(t).Value
+        End If
+    
+    End Sub
+
+
+    Protected Overrides Sub attivaneurone(i, j, k, sga, numciclo)
 
 #If 0 Then
         If i = 9 Then
             Dim dummy = 1
         End If
 #End If
+        If EnableExternalInput = True Then
+            PrepareInputLayer(numciclo)
+        End If
 
         Dim lv As Integer = NumLivelli
         Dim ar = NetworkConfiguration.sigmoide
@@ -49,14 +67,10 @@ Public Class CellularAutomateExternalInput
 
         ' verifica se è un neurone di input ed è abilitato lo stimolo esterno
         If i = 0 And EnableExternalInput = True Then
-            If counter \ 5 = 0 Then
+            If (time Mod 10) < 5 Then  ' Si è inserito un Duty Cicle del 50% di durata 5 cicli
                 ' in caso positivo somma anche il valore del layer di input
                 nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
-            ElseIf counter >= 10 Then
-                counter = -1
             End If
-
-            counter += 1
         End If
 
 

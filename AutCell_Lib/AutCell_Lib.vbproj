@@ -65,6 +65,7 @@
     <Compile Include="CellularAutomaExternalInput.vb" />
     <Compile Include="CellularAutomata.vb" />
     <Compile Include="Configuration.vb" />
+    <Compile Include="ExternalInput.vb" />
     <Compile Include="Functions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

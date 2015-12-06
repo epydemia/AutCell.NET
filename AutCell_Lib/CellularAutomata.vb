@@ -32,6 +32,7 @@ Public Class CellularAutomata
         Me.New(config.cellforEachSide, config.levels)
         Me.NetworkConfiguration = New Configuration()
         Me.NetworkConfiguration = config
+        time = 0
         Init()
     End Sub
 
@@ -215,7 +216,7 @@ Public Class CellularAutomata
 
                             Select Case NetworkConfiguration.modulation
                                 Case Is = TModulation.Amplitude
-                                    attivaneurone(i, j, k, NetworkConfiguration.sigmoide)
+                                    attivaneurone(i, j, k, NetworkConfiguration.sigmoide, time)
                                 Case Is = TModulation.Frequency
                                     ' To Do
                             End Select
@@ -253,7 +254,7 @@ Public Class CellularAutomata
 
                         Select Case NetworkConfiguration.modulation
                             Case Is = TModulation.Amplitude
-                                attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain)
+                                attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain, time)
                             Case Is = TModulation.Frequency
                                 ' To Do
                         End Select
@@ -289,6 +290,8 @@ Public Class CellularAutomata
 
         Sequenza()
 
+        time += 1
+
     End Sub
 
     Public Sub UpdateParallelFor()
@@ -303,7 +306,7 @@ Public Class CellularAutomata
 
                                                      Select Case NetworkConfiguration.modulation
                                                          Case Is = TModulation.Amplitude
-                                                             attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain)
+                                                             attivaneurone(i, j, k, NetworkConfiguration.ThresholdGain, time)
                                                          Case Is = TModulation.Frequency
                                                              ' To Do
                                                      End Select
@@ -478,7 +481,7 @@ Public Class CellularAutomata
         Next li
     End Sub
 
-    Protected Overridable Sub attivaneurone(i, j, k, sga)
+    Protected Overridable Sub attivaneurone(i, j, k, sga, time)
         Dim lv As Integer = NumLivelli
         Dim ar = NetworkConfiguration.sigmoide
         Dim pr = NetworkConfiguration.pr
