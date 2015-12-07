@@ -224,8 +224,9 @@ Public Class MainForm
     End Sub
 
     Private Sub StateSpace3DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StateSpace3DToolStripMenuItem.Click
-        ' Attivare la finestra OpenGL
-        OpenGLBackgroundWorker.RunWorkerAsync()
+        If Not OpenGLBackgroundWorker.IsBusy Then
+            OpenGLBackgroundWorker.RunWorkerAsync()
+        End If
     End Sub
 
     Private Sub OpenGLBackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles OpenGLBackgroundWorker.DoWork
