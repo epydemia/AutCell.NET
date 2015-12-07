@@ -32,8 +32,10 @@ Partial Class MainForm
         Me.ExternalInputToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadEditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExternalInputActivateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LockSynapticWeightToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MonitorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LayerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActivationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
@@ -42,8 +44,8 @@ Partial Class MainForm
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.Plot_ActivityDistribution = New OxyPlot.WindowsForms.Plot()
         Me.Plot_ThresholdDistribution = New OxyPlot.WindowsForms.Plot()
-        Me.LockSynapticWeightToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ActivationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StateSpace3DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenGLBackgroundWorker = New System.ComponentModel.BackgroundWorker()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,9 +129,16 @@ Partial Class MainForm
         Me.ExternalInputActivateToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.ExternalInputActivateToolStripMenuItem.Text = "Activate"
         '
+        'LockSynapticWeightToolStripMenuItem
+        '
+        Me.LockSynapticWeightToolStripMenuItem.CheckOnClick = True
+        Me.LockSynapticWeightToolStripMenuItem.Name = "LockSynapticWeightToolStripMenuItem"
+        Me.LockSynapticWeightToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.LockSynapticWeightToolStripMenuItem.Text = "Lock Synaptic Weight"
+        '
         'MonitorToolStripMenuItem
         '
-        Me.MonitorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LayerToolStripMenuItem, Me.ActivationToolStripMenuItem})
+        Me.MonitorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LayerToolStripMenuItem, Me.ActivationToolStripMenuItem, Me.StateSpace3DToolStripMenuItem})
         Me.MonitorToolStripMenuItem.Name = "MonitorToolStripMenuItem"
         Me.MonitorToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
         Me.MonitorToolStripMenuItem.Text = "Monitor"
@@ -139,6 +148,12 @@ Partial Class MainForm
         Me.LayerToolStripMenuItem.Name = "LayerToolStripMenuItem"
         Me.LayerToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LayerToolStripMenuItem.Text = "Activity Layer"
+        '
+        'ActivationToolStripMenuItem
+        '
+        Me.ActivationToolStripMenuItem.Name = "ActivationToolStripMenuItem"
+        Me.ActivationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ActivationToolStripMenuItem.Text = "Activation"
         '
         'Splitter2
         '
@@ -260,18 +275,14 @@ Partial Class MainForm
         Me.Plot_ThresholdDistribution.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.Plot_ThresholdDistribution.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
-        'LockSynapticWeightToolStripMenuItem
+        'StateSpace3DToolStripMenuItem
         '
-        Me.LockSynapticWeightToolStripMenuItem.CheckOnClick = True
-        Me.LockSynapticWeightToolStripMenuItem.Name = "LockSynapticWeightToolStripMenuItem"
-        Me.LockSynapticWeightToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
-        Me.LockSynapticWeightToolStripMenuItem.Text = "Lock Synaptic Weight"
+        Me.StateSpace3DToolStripMenuItem.Name = "StateSpace3DToolStripMenuItem"
+        Me.StateSpace3DToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StateSpace3DToolStripMenuItem.Text = "State Space 3D"
         '
-        'ActivationToolStripMenuItem
+        'OpenGLBackgroundWorker
         '
-        Me.ActivationToolStripMenuItem.Name = "ActivationToolStripMenuItem"
-        Me.ActivationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ActivationToolStripMenuItem.Text = "Activation"
         '
         'MainForm
         '
@@ -327,5 +338,7 @@ Partial Class MainForm
     Friend WithEvents LayerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LockSynapticWeightToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ActivationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents StateSpace3DToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenGLBackgroundWorker As System.ComponentModel.BackgroundWorker
 
 End Class

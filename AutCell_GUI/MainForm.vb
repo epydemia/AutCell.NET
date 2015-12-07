@@ -1,12 +1,16 @@
 ﻿Imports AutCell_Lib
 Imports OxyPlot
 Imports OxyPlot.Series
+Imports ViewPortOpenGL
+
 
 Public Class MainForm
     Public net As CellularAutomateExternalInput
 
     Public LayerMonitor As MonitorLayer
     Public ActivationMonitor As MonitorLayer
+
+    Public StateSpace3D As New ViewPortOpenGL.ViewPortWindow()
 
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New LineSeries()
@@ -34,7 +38,6 @@ Public Class MainForm
 
         BackgroundWorker2.WorkerReportsProgress = True
 
-
         ' Set up Activity Plot
         With ActivityPlot
             .Title = "Global Activity"
@@ -42,7 +45,6 @@ Public Class MainForm
             Plot_GlobalActivity.Model = ActivityPlot
             .Axes.Add(New Axes.LinearAxis(pos:=Axes.AxisPosition.Bottom, minimum:=0, maximum:=1000))
         End With
-
 
         'Set up Weight Distribution
         With WeightDistributionPlot
@@ -65,7 +67,6 @@ Public Class MainForm
             CategoryAxis.Labels.Add("Activity")
             .Axes.Add(CategoryAxis)
         End With
-
 
         'Set Up Activity distribution
         With ThresholdDistributionPlot
@@ -110,6 +111,9 @@ Public Class MainForm
 
                 LayerMonitor.UpdateWindow(net)
                 ActivationMonitor.UpdateWindow(net)
+
+                ' Update SS3D
+                StateSpace3D.addPoints(net.Neu(1, 1, 1).activity, net.Neu(3, 3, 3).activity, net.Neu(5, 5, 5).activity, ExternalInputEnabled)
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
@@ -217,6 +221,15 @@ Public Class MainForm
     Private Sub ActivationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActivationToolStripMenuItem.Click
         ActivationMonitor.Text = "Activation"
         ActivationMonitor.Show()
+    End Sub
+
+    Private Sub StateSpace3DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StateSpace3DToolStripMenuItem.Click
+        ' Attivare la finestra OpenGL
+        OpenGLBackgroundWorker.RunWorkerAsync()
+    End Sub
+
+    Private Sub OpenGLBackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles OpenGLBackgroundWorker.DoWork
+        StateSpace3D.Run()
     End Sub
 End Class
 

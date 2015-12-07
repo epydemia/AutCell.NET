@@ -147,6 +147,10 @@
       <Project>{e07000b5-cc4d-421d-86c7-b1fdc17221ef}</Project>
       <Name>AutCell_Lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewPortOpenGL\ViewPortOpenGL.csproj">
+      <Project>{a418b8a3-bd1d-4325-be0d-1f4a7a8104e3}</Project>
+      <Name>ViewPortOpenGL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
