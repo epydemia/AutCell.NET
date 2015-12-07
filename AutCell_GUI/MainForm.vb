@@ -11,6 +11,8 @@ Public Class MainForm
     Public ActivationMonitor As MonitorLayer
 
     Public StateSpace3D As New ViewPortOpenGL.ViewPortWindow()
+    Public Network3D As New ViewPortWindow()
+
 
     Private ActivityPlot As New PlotModel()
     Private ActivitySeries As New LineSeries()
@@ -89,8 +91,20 @@ Public Class MainForm
         'Set up MonitorLayer Window
         LayerMonitor = New MonitorLayer(3, 4, MonitorType.Activity)
         ActivationMonitor = New MonitorLayer(3, 4, MonitorType.Activation)
+
+        Network3D.BoxMode = True
+
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+        'Create Network 3D
+        For x As Integer = 0 To net.NumCellLato - 1
+            For y As Integer = 0 To net.NumCellLato - 1
+                For z As Integer = 0 To net.NumCellLato - 1
+                    Network3D.addPoints(x * 0.1, y * 0.1, z * 0.1, True)
+                Next
+            Next
+        Next
+
 
         For i As Integer = 0 To 1000
             If BackgroundWorker2.CancellationPending Then
@@ -114,6 +128,18 @@ Public Class MainForm
 
                 ' Update SS3D
                 StateSpace3D.addPoints(net.Neu(1, 1, 1).activity, net.Neu(3, 3, 3).activity, net.Neu(5, 5, 5).activity, ExternalInputEnabled)
+
+                'Update Network3D
+                Dim index As Integer = 0
+                For x As Integer = 0 To net.NumCellLato - 1
+                    For y As Integer = 0 To net.NumCellLato - 1
+                        For z As Integer = 0 To net.NumCellLato - 1
+                            Network3D.cubeColor(index) = Math.Min(net.Neu(x, y, z).activity * 255, 255)
+                            index += 1
+                        Next
+                    Next
+                Next
+
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
@@ -231,6 +257,15 @@ Public Class MainForm
 
     Private Sub OpenGLBackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles OpenGLBackgroundWorker.DoWork
         StateSpace3D.Run()
+
+    End Sub
+
+    Private Sub Network3DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Network3DToolStripMenuItem.Click
+        Net3DWorker.RunWorkerAsync()
+    End Sub
+
+    Private Sub Net3DWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Net3DWorker.DoWork
+        Network3D.Run()
     End Sub
 End Class
 

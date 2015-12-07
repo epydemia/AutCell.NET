@@ -36,6 +36,7 @@ Partial Class MainForm
         Me.MonitorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LayerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActivationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StateSpace3DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
@@ -44,8 +45,9 @@ Partial Class MainForm
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.Plot_ActivityDistribution = New OxyPlot.WindowsForms.Plot()
         Me.Plot_ThresholdDistribution = New OxyPlot.WindowsForms.Plot()
-        Me.StateSpace3DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenGLBackgroundWorker = New System.ComponentModel.BackgroundWorker()
+        Me.Network3DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Net3DWorker = New System.ComponentModel.BackgroundWorker()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +140,7 @@ Partial Class MainForm
         '
         'MonitorToolStripMenuItem
         '
-        Me.MonitorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LayerToolStripMenuItem, Me.ActivationToolStripMenuItem, Me.StateSpace3DToolStripMenuItem})
+        Me.MonitorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LayerToolStripMenuItem, Me.ActivationToolStripMenuItem, Me.StateSpace3DToolStripMenuItem, Me.Network3DToolStripMenuItem})
         Me.MonitorToolStripMenuItem.Name = "MonitorToolStripMenuItem"
         Me.MonitorToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
         Me.MonitorToolStripMenuItem.Text = "Monitor"
@@ -154,6 +156,12 @@ Partial Class MainForm
         Me.ActivationToolStripMenuItem.Name = "ActivationToolStripMenuItem"
         Me.ActivationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ActivationToolStripMenuItem.Text = "Activation"
+        '
+        'StateSpace3DToolStripMenuItem
+        '
+        Me.StateSpace3DToolStripMenuItem.Name = "StateSpace3DToolStripMenuItem"
+        Me.StateSpace3DToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StateSpace3DToolStripMenuItem.Text = "State Space 3D"
         '
         'Splitter2
         '
@@ -275,13 +283,16 @@ Partial Class MainForm
         Me.Plot_ThresholdDistribution.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.Plot_ThresholdDistribution.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS
         '
-        'StateSpace3DToolStripMenuItem
-        '
-        Me.StateSpace3DToolStripMenuItem.Name = "StateSpace3DToolStripMenuItem"
-        Me.StateSpace3DToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.StateSpace3DToolStripMenuItem.Text = "State Space 3D"
-        '
         'OpenGLBackgroundWorker
+        '
+        '
+        'Network3DToolStripMenuItem
+        '
+        Me.Network3DToolStripMenuItem.Name = "Network3DToolStripMenuItem"
+        Me.Network3DToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Network3DToolStripMenuItem.Text = "Network 3D"
+        '
+        'Net3DWorker
         '
         '
         'MainForm
@@ -340,5 +351,7 @@ Partial Class MainForm
     Friend WithEvents ActivationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents StateSpace3DToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenGLBackgroundWorker As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Network3DToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Net3DWorker As System.ComponentModel.BackgroundWorker
 
 End Class
