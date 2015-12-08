@@ -26,11 +26,13 @@ namespace ViewPortOpenGL
         {
             //initPoints();
             Color c = Color.MidnightBlue;
-            Matrix4 m = Matrix4.Mult(Matrix4.Identity, Matrix4.CreateRotationY(Convert.ToSingle(3*Math.PI / 4)));
-            m = Matrix4.Mult(m, Matrix4.CreateRotationX(Convert.ToSingle(-Math.PI/4)));
+            Matrix4 m = Matrix4.Mult(Matrix4.Identity, Matrix4.CreateRotationY(Convert.ToSingle(-Math.PI / 4)));
+            m = Matrix4.Mult(m, Matrix4.CreateRotationX(Convert.ToSingle(Math.PI/4)));
             Matrix4 DefaultMatrix = m;
             float pos = 0;
             float rot = 0;
+            float scale=1.0f;
+            int zoomDirection = 0;
 
             using (var game = new GameWindow())
             {
@@ -49,6 +51,18 @@ namespace ViewPortOpenGL
                 game.UpdateFrame += (sender, e) =>
                 {
                     // add game logic, input handling
+                    if (game.Keyboard[Key.Number1])
+                    {
+                        m = Matrix4.Identity;
+                    }
+                    if (game.Keyboard[Key.Number2])
+                    {
+                        m = Matrix4.Mult(Matrix4.Identity, Matrix4.CreateRotationX(Convert.ToSingle(-Math.PI/2)));
+                    }
+                    if (game.Keyboard[Key.Number3])
+                    {
+                        m = Matrix4.Mult(Matrix4.Identity, Matrix4.CreateRotationY(Convert.ToSingle(Math.PI/2)));
+                    }
                     if (game.Mouse[MouseButton.Left])
                     {
                         m = DefaultMatrix;
@@ -98,24 +112,53 @@ namespace ViewPortOpenGL
 
                         m = Matrix4.Mult(m, Matrix4.CreateRotationX(-0.1f));
                     }
+                    if (game.Keyboard[Key.KeypadPlus])
+                    {
+                        if (zoomDirection == 1)
+                            scale += 0.01f;
+                        else
+                            scale = 1.01f;
+
+                        m = Matrix4.Mult(m, Matrix4.Scale(scale));
+                        zoomDirection = 1;
+                    }
+                    if (game.Keyboard[Key.KeypadMinus])
+                    {
+                        if (zoomDirection == -1)
+                            scale -= 0.01f;
+                        else
+                            scale = 0.99f;
+                        
+                        m = Matrix4.Mult(m, Matrix4.Scale(scale));
+                        zoomDirection = -1;
+                    }
+                    if (game.Keyboard[Key.Keypad0])
+                    {
+                        zoomDirection = 0;
+                        m = Matrix4.Mult(m, Matrix4.Scale(2.0f-scale));
+                        scale = 1.0f;
+                    }
                 };
 
                 game.RenderFrame += (sender, e) =>
                 {
+                    //m=Matrix4.Mult(m,Matrix4.Scale(scale));
                     // render graphics
                     GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
                     GL.MatrixMode(MatrixMode.Projection);
                     GL.LoadMatrix(ref m);
                     //GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
-
+                    
                     // Draw the Axes
                     GL.Begin(PrimitiveType.Lines);
-                    GL.Color4(new Color4(255, 255, 255, 64));
+                    GL.Color4(new Color4(255, 0, 0, 64));
                     GL.Vertex3(0f, 0f, 0f);
                     GL.Vertex3(1f, 0f, 0f);
+                    GL.Color4(new Color4(0, 255, 0, 64));
                     GL.Vertex3(0f, 0f, 0f);
                     GL.Vertex3(0f, 1f, 0f);
+                    GL.Color4(new Color4(0, 0, 255, 64));
                     GL.Vertex3(0f, 0f, 0f);
                     GL.Vertex3(0f, 0f, 1f);
                     GL.End();
@@ -158,6 +201,10 @@ namespace ViewPortOpenGL
                                 GL.Color3(Color.White);
 
                             GL.Vertex3(pointsArray[i]);
+                            /*DrawBox(pointsArray[i].X,
+                                    pointsArray[i].Y,
+                                    pointsArray[i].Z,
+                                    0.0025f);*/
                         } 
                         GL.End();
                    
