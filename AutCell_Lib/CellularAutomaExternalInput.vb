@@ -67,10 +67,10 @@ Public Class CellularAutomateExternalInput
 
         ' verifica se è un neurone di input ed è abilitato lo stimolo esterno
         If i = 0 And EnableExternalInput = True Then
-            If (time Mod 10) < 5 Then  ' Si è inserito un Duty Cicle del 50% di durata 5 cicli
-                ' in caso positivo somma anche il valore del layer di input
-                nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
-            End If
+            'If (time Mod 10) < 5 Then  ' Si è inserito un Duty Cicle del 50% di durata 5 cicli
+            ' in caso positivo somma anche il valore del layer di input
+            nt += Neu(i, j, k).ExternalInputWeight * InputLayer(j, k)
+            'End If
         End If
 
 
