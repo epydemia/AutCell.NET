@@ -6,7 +6,6 @@ C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\D
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_Lib.pdb
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\AutCell_Lib.xml
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.vbprojResolveAssemblyReference.cache
-C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.Form1.resources
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.Resources.resources
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.vbproj.GenerateResource.Cache
 C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.exe
@@ -18,3 +17,11 @@ C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\D
 C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.xml
 C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.WindowsForms.pdb
 C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OxyPlot.WindowsForms.xml
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.ExternalInputTable.resources
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.MonitorLayer.resources
+C:\Users\Daniele\documents\visual studio 2012\Projects\AutCell\AutCell_GUI\obj\Debug\AutCell_GUI.MainForm.resources
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\ViewPortOpenGL.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OpenTK.dll
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\ViewPortOpenGL.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OpenTK.pdb
+C:\Users\Daniele\Documents\Visual Studio 2012\Projects\AutCell\AutCell_GUI\bin\Debug\OpenTK.xml

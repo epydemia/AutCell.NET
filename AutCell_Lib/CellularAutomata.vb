@@ -416,6 +416,7 @@ Public Class CellularAutomata
             For j = 0 To ncl
                 For k = 0 To ncl
                     Neu(i, j, k).activity = 0.001
+                    'Neu(i, j, k).activity = Rnd()
                 Next k
             Next j
         Next i

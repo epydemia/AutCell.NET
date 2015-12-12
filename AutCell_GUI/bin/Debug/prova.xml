@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <cellforEachSide>10</cellforEachSide>
-  <levels>3</levels>
+  <cellforEachSide>7</cellforEachSide>
+  <levels>2</levels>
   <initialAverageWeight>0.5</initialAverageWeight>
   <variabilityPercent>0.5</variabilityPercent>
   <coeffDimenticanza>0.2</coeffDimenticanza>
-  <ec>3</ec>
-  <inib>2</inib>
+  <ec>7</ec>
+  <inib>3</inib>
   <Hebb>true</Hebb>
   <Kandel>false</Kandel>
   <BackProp>false</BackProp>
   <DecadimentoRetrodifussione>0.1</DecadimentoRetrodifussione>
-  <ThresholdGain>1.5</ThresholdGain>
-  <sigmoide>5</sigmoide>
+  <ThresholdGain>2.0</ThresholdGain>
+  <sigmoide>2</sigmoide>
   <pr>5</pr>
-  <cla>10</cla>
+  <cla>500</cla>
   <tipoSinapsi>Exciter_AND_Inhibiter</tipoSinapsi>
   <modulation>Amplitude</modulation>
 </Configuration>

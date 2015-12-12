@@ -127,7 +127,7 @@ Public Class MainForm
                 ActivationMonitor.UpdateWindow(net)
 
                 ' Update SS3D
-                StateSpace3D.addPoints(net.Neu(1, 1, 1).activity, net.Neu(3, 3, 3).activity, net.Neu(5, 5, 5).activity, ExternalInputEnabled)
+                StateSpace3D.addPoints(net.Neu(1, 1, 1).activity, net.Neu(3, 3, 3).activity, net.Neu(2, 2, 2).activity, ExternalInputEnabled)
 
                 'Update Network3D
                 Dim index As Integer = 0
@@ -139,7 +139,6 @@ Public Class MainForm
                         Next
                     Next
                 Next
-
 
                 BackgroundWorker2.ReportProgress(i / 10)
             End If
